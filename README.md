@@ -1,4 +1,4 @@
-This git repository exposits the code for Grab AI Challenge (Traffic Management) https://www.aiforsea.com/traffic-management, which includes the complete version of the code and comments about the code functions.
+This git repository exposits the code for Grab S.E.A AI Challenge (Traffic Management) https://www.aiforsea.com/traffic-management, which includes the complete version of the code and comments about the code functions. For any issues/enquiries, please feel free to contact me (Adrian) at xlin012@e.ntu.edu.sg.
 
 The key programs are:
 
@@ -168,7 +168,7 @@ For model choice, gradient boost decision tree (GBDT) methods are highly effecti
 ## Experiments
 To study the effectiveness of the proposed solution, some experiments are conducted. In this section, the characteristics of the dataset is first introduced. Then, the impacts of different types of features are discussed. Finally, the effectiveness of different methods for demand estimation are compared.
 
-### Training Data Characteristics
+### Data (training.csv) Characteristics
 | Statistical Index| Value |
 | :---: | :---: |
 | Min. Latitude | -5.48 | 
