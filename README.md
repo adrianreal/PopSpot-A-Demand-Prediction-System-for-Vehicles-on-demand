@@ -98,7 +98,7 @@ Attributes denote features that provide a high-level information about the recor
 
 - Period of day (0-95). This is converted from the timestamp feature. This feature is included to take into consideration the demand variation across the day. E.g. the demand during the morning peak hours at a residential area may be higher than that during the non-peak hours.
 
-For example, here is a plot of the aggregated demand of a geohash6 point over a period of 7 days, which are denoted by 1-7. Note again that due to the anonymity of the records, 1 does not refer to Monday/Sunday, nor does 7 refers to Saturday/Sunday, etc. 1-7 exists simply to differentiate the different days of the week.
+For example, here is a plot of the aggregated demand of a geohash6 point over a period of 7 days, which are denoted by 1-7. Note again that due to the anonymity of the records, 1 does not refer to Monday/Sunday, nor does 7 refers to Saturday/Sunday, etc. 1-7 exist simply to differentiate the different days of the week.
 
 <p align="center">
 <img src="periodicity.png"  width="500" height="360">
