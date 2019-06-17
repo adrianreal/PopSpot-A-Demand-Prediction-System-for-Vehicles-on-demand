@@ -48,7 +48,7 @@ A machine learning model can now be trained with the following command.
 ```
 python training.py --train_data=data/engineered_train.csv --model=lgbm
 ```
-If you run the code, you can see the output of such a format.
+If you run the code, you can see the output with such a format.
 
 ```
 Training Begins
@@ -74,7 +74,7 @@ To test the accuracy of the trained model, use the following command.
 ```
 python testing.py --test_data=data/engineered_test.csv --model=lgbm
 ```
-Similar to the training step earlier, "ridge" and "mlp" may too be used instead of "lgbm". However, LightGBM is the best-performing method. If you run the code, you can see an output with such a format:
+Similar to the model training step earlier, "ridge" and "mlp" may too be used instead of "lgbm". However, LightGBM is the best-performing method. If you run the code, you can see an output with such a format:
 
 ```
 Testing Begins
