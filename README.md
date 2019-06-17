@@ -156,7 +156,7 @@ For the same reasons mentioned in 2), the same feautres are generated for each o
 - Sum of demand at corresponding Region (Big) over past 6 periods
 
 The is repeated for Region (Small) and Region (Medium) to get their respective short-term features. **Note**: If dataset is testing dataset, certain short-term historical demands may not be available for all points/regions. E.g. If the current record 
-is recorded at T+5 (we are only allowed to generate features using data up to T), the only short-term historical demands (over past six periods) available are during T-1 and T. In these cases, extrapolation is done by filling these missing demands with its closest available recorded demand. In the above example, T1-T4 are filled with the demand at T. 
+is recorded at T+5, the only short-term historical demands (over past six periods) available are during T-1 and T (we are only allowed to generate features using data up to T). In these cases, extrapolation is done by filling these missing demands with its closest available recorded demand. In the above example, T1-T4 are filled with the demand at T. 
 
 ## Problem Definition
 This problem is a regression problem. Specifically, the **problem objective** is:
