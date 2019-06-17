@@ -57,7 +57,7 @@ if __name__ == '__main__':
 			pickle.dump(reg,open("models/ridge","wb"))
 			print "Training Completed"
 
-		if model == 'linear':
+		elif model == 'linear':
 			# If model chosen is Linear Regression.
 			print "Training Begins"
 			reg = LinearRegression()
