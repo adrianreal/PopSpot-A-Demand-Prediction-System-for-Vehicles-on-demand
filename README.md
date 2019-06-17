@@ -234,7 +234,7 @@ Due to the anonymity of the geo-locations of the data, city-specific optimizatio
 
 The state of the art method focuses on estimating the regional demand [2], where the area of the regions considered is much larger than the area covered by a geohash (in our case). Although it is deep-learning based, it requires the information of the road network. As such, if more information like the city-specific road network is available, further optimization via other methods can also be applied. Furthermore, apart from [2] which requires city-specific road network information, the other notable deep learning-based methods focus only on region-based demand prediction, and only demonstrate their superiority over gradient boost methods when short-term demand is considered [3]. Specifically, they do not leverage the long-term historical demands that have been shown to be effective in our case. As such, LightGBM is still safely more reliable and is the chosen model for this problem for accuracy-sake. 
 
-Finally, additional ensembles may be applied to fine-tune the estimations slightly further as well.
+Finally, additional ensembles may be applied to slightly further fine-tune the estimations slightly as well.
 
 ## References
 [1] [LightGBM](https://lightgbm.readthedocs.io/en/latest/)
