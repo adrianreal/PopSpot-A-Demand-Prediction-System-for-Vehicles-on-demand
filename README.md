@@ -139,7 +139,7 @@ Furthermore, to leverage such long-term information of the region that a point f
 ### 3) Short-term Historical Features
 Although long-term demands highlight the periodicity of demand at a point, the actual demand is highly dependent on the real-time, i.e. short-term, conditions. For example, a point may experience higher demand for Grab vehicles over certain consecutive time periods because an ad-hoc event, e.g. Coldplay concert, just ended a while ago. As such, the short-term demand information over the past few periods is leveraged to capture such information, through the use of the following features.
 - Demand at this geohash over period -1 (i.e. previous period)
-- Demand at this geohash over period -2
+- Demand at this geohash over period -2 (i.e. 2 periods before)
 - .....................................
 - Demand at this geohash over period -6
 - Sum of demand at this geohash over past 2 periods
@@ -147,7 +147,7 @@ Although long-term demands highlight the periodicity of demand at a point, the a
 - Sum of demand at this geohash over past 6 periods
 
 For the same reasons mentioned in 2), the same feautres are generated for each of Region-Big, Region-Medium and Region-Small. For example, the features for Region-Big are as follows.
-- Demand at corresponding Region-Big over period -1 (i.e. previous period)
+- Demand at corresponding Region-Big over period -1
 - Demand at corresponding Region-Big over period -2
 - .....................................
 - Demand at corresponding Region-Big over period -6
