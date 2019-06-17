@@ -107,7 +107,7 @@ As observed, there are general intra-day patterns such as peaks in demands befor
 
 \
 **Spatial Features** 
-- Geohash6. The demand at a point may be very different from the demand at another point. For example, the demand around a shopping mall thoughout the day is likely to be very differnt from the demand at a residential block. As such, we consider geohash6 as another feature. For the sake of clarity and to satisfy the input format requirement for model learning, a unique ID is assigned for each geohash.
+- Geohash6. The demand at a point may be very different from the demand at another point. For example, the demand around a shopping mall thoughout the day is likely to be very different from the demand at a residential block. As such, we consider geohash6 as another feature. For the sake of clarity and to satisfy the input format requirement for model learning, a unique ID is assigned for each geohash.
 
 Here is a plot of the daily aggregated demand of 12 randomly chosen geohash6 points over a period of 7 days, which are denoted by 1-7. 
 <p align="center">
