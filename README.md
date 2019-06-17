@@ -41,7 +41,7 @@ Feature Engineering for Testing Data
 
 Saving File 
 ```
-The above step engineers new features for both the training and testing datasets. For each record in "training.csv", feature_engineering.py uses data of up to two weeks before the correpsonding time instance of this record to generate new features. The similar is done for "testing.csv", with an exception. Specifically, the amount of records in the test dataset available for feature generation is two-weeks long and up to time period T, and the records for T+1 to T+5 are used for prediction. After performing this step, you will see two new files generated in "/data" folder. They are "engineered_train.csv" and "engineered_test.csv" respectively.
+The above step engineers new features for both the training and testing datasets. For each record in "training.csv", feature_engineering.py uses data of up to two weeks before its correpsonding time instance to generate new features. The similar is done for "testing.csv", with an exception. Specifically, the amount of records in the test dataset available for feature generation is two-weeks long and up to time period T, and the records for T+1 to T+5 are considered for prediction. After performing this step, you will see two new files generated in "/data" folder. They are "engineered_train.csv" and "engineered_test.csv" respectively.
 
 ### Model Training 
 A machine learning model can now be trained with the following command.
