@@ -124,7 +124,7 @@ Since a 5 x 5 grid-mapping may not be exactly how the city is regionized in real
 - Region (Small)
 
 ### 2) Long-term Historical Features
-The demand at a certain period on a certain day may depend on the day of week. For example, there may be more people demanding Grab vehhicles towards the downtown business district during 8 am of a weekday than 8 am of a weekend. 
+The demand at a certain period on a certain day may depend on the day of week. For example, there may be more people demanding Grab vehicles for trips towards the downtown business district during 8 am of a weekday than 8 am of a weekend. 
 
 To account for such periodicity, the following features are created. These features are termed long-term historical features.
 - Demand at this geohash at the same period of the same weekday 1 week ago
@@ -163,7 +163,7 @@ This problem is a regression problem. Specifically, the **problem objective** is
 Given the input of a record of features from a particular period of a particular day, where these features comprise of 1) Attributes, 2) Long-term Historical Features and 3) Short-term Historical Features, predict the demand of Grab vehicles at that period.
 
 ## Model Choice
-For model choice, gradient boost decision tree (GBDT) methods are highly effective for problems with structured inputs (i.e. tables). In particular, LightGBM [1] is one of the most effective and efficient GBDT methods. As such, we leverage LightGBM for this problem.
+For model choice, gradient boost decision tree (GBDT) methods are highly effective for problems with structured inputs (i.e. tables). In particular, LightGBM [1] is one of the most effective and efficient GBDT methods. As such, we leverage LightGBM for this problem. For more details of the settings used, please refer to training.py.
 
 ## Experiments
 To study the effectiveness of the proposed solution, some experiments are conducted. In this section, the characteristics of the dataset is first introduced. Then, the impacts of different types of features are discussed. Finally, the effectiveness of different methods for demand estimation are compared.
@@ -200,11 +200,11 @@ The root-mean-square-error (RMSE) and mean-absolute-error (MAE) errors are as fo
 
 As observed, the group which consists of all attribute, short-term and long-term features, i.e. **D**, yields the best performing accuracy. Adding long-term historical point-based features, i.e. **B**, improves the estimation by about 26% from **A**. The further addition of short-term historical point-based features improves the estimation by about 30%. Finally, adding the region-based features also slightly improves the accuracy. One thing to note is that the impact/improvement brought about by region-based information is not as pronounced as what was expected. However, the decision is made to retain these features as there is still evidence of some improvement, and the accuracy may be better in the actual testing dataset, "testing.csv".
 
-Based on the feature importance evaluation of LightGBM, the top 10 (out of 54) most important features (gain improvements brought about by that feature) are as follows.
+Based on the feature importance evaluation tool of LightGBM, the top 10 (out of 54) most important features (gain improvements brought about by that feature) are as follows.
 
 | Feature| Gain-based Importance |
 | :---: | :---: |
-|Demand at Period -1| 3913129.4369661957
+|Demand at Period -1 (i.e. previous period)| 3913129.4369661957
 |Sum of Demand over Past 2 Periods| 1309120.9149529226| 
 |Sum of Demand over Past 4 Periods| 138575.2317873165|
 |Avg. Demand at Same Period over Past 2 Weeks| 48529.97696241364|
@@ -227,7 +227,7 @@ Experiments are also conducted to compare the accuracy of LightGBM against two o
 | MLP | 0.168 | 0.0987 |
 | LightGBM | **0.0312**  | **0.0203** |
 
-As observed, LightGBM has the best performance, which demonstrates the effectiveness of using gradient-boosting decision tree methods for problems like this. The RMSE of 0.0312 and MAE of 0.0203 highlight the fairly high accuracy of LightGBM, considering that the majority of the demands fall below 0.249 as shown earlier. Specifically, the RMSE and MAE are 12.5% and 8.2% of this particular demand. Note that the errors for Linear Regression are extremely large. This is due to overfitting in linear regression, exacerbated by the large number of dummy variables that come from one-hot encoding. As such, since ridge regression has a regularizer term that penalizes large coefficients and minimizes overfitting, it performs much better than linear regression. MLP, on the other hand performs worse than LightGBM.
+As observed, LightGBM has the best performance, which demonstrates the effectiveness of using gradient-boosting decision-tree methods for problems like this. The RMSE of 0.0312 and MAE of 0.0203 highlight the fairly high accuracy of LightGBM, considering that the majority of the demands fall below 0.249 as shown earlier. Specifically, the RMSE and MAE are 12.5% and 8.2% of this particular demand. Note that the errors for Linear Regression are extremely large. This is due to overfitting in linear regression, exacerbated by the large number of dummy variables that come from one-hot encoding. As such, since ridge regression has a regularizer term that penalizes large coefficients and minimizes overfitting, it performs much better than linear regression. MLP, on the other hand performs worse than LightGBM.
 
 ## Limitations and Areas of Improvements
 Due to the anonymity of the geo-locations of the data, city-specific optimizations are omitted. If city-specific information is available, more accurate features can also be derived. For example, places like Singapore often have government-planned regions, e.g. Downtown Core, Changi, etc. Each of these regions serves a particular function, e.g. business district or residential, and it may benefit the estimations if such finer-grained information is used.
