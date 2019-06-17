@@ -23,7 +23,7 @@ The following sections show how the programs are used and address the rationales
 
 This solution starts off with generating additional features for each record in the training and testing dataset. 
 
-1) To begin, place "training.csv" and "testing.csv" in the "/data" folder. **Note**: "training.csv" is the data provided in https://www.aiforsea.com/traffic-management, and "testing.csv" is the actual testing data withheld from the participants.
+1) To begin, place "training.csv" and "testing.csv" in the "/data" folder. **Note**: "training.csv" is the data provided in https://www.aiforsea.com/traffic-management, and "testing.csv" is the actual testing data that the participants do not have access to.
 
 2) Then run this command:
 ```
