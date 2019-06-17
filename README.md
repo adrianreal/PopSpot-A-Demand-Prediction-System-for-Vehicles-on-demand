@@ -23,7 +23,7 @@ The following sections show how the programs are used and address the rationales
 
 This solution starts off with generating additional features for each record in the training and testing dataset. 
 
-1) To begin, place "training.csv" and "testing.csv" in the "/data" folder. 
+1) To begin, place "training.csv" and "testing.csv" in the "/data" folder. **Note**: "training.csv" is the data provided in https://www.aiforsea.com/traffic-management, and "testing.csv" is the actual testing data withheld from the participants.
 
 2) Then run this command:
 ```
@@ -182,7 +182,7 @@ To study the effectiveness of the proposed solution, some experiments are conduc
 The above table shows some statistics of "training.csv". The geospatial points span an area of 26.5 km x 44.3km. As observed, the mean aggregated demand in the dataset is relatively low (0.105). The 90-percentile aggregated demand also shows that the majority of the demand values fall below 0.249, which is a very low value. This suggests that across the whole geograhical space sampled, the majority of the demands are relatively low as compared to certain few points that have very high demands.
 
 ### Impact of Different Features
-To demonstrate the impact of the built model, a hold-out validation using solely "training.csv" is carried out. Specifically, records from the last 2 weeks of "training.csv" are used for testing, and the rest of "training.csv" is used for training. To generate features for each training and testing record, two weeks' worth of data prior to the record's period are used. There is an exception for records obtained from the last 5 periods of the testing dataset, where extrapolations (mentioned under the section "Short-term Historical Features") have to be done to generate the short-term historical features. This is done to simulate the real test-case situation where data from T+1 to T+5 is not available for feature generation. For this experiment, **features are incrementally added** and the resulting effectiveness is evaluated. In general, the group of features considered are:
+To demonstrate the impact of the built model, a hold-out validation using solely "training.csv" is carried out. Specifically, records from the last 2 weeks of "training.csv" are used for testing. Let us denote these records as training-train. The rest of "training.csv" is used for training. Let us denoe these records as training-test. To generate features for each training-train and training-test record, two weeks' worth of data prior to the record's period are used. There is an exception for records obtained from the last 5 periods of the training-test dataset, where extrapolations (mentioned under the section "Short-term Historical Features") have to be done to generate the short-term historical features. This is done to simulate the real test-case situation (of testing.csv"") where data from T+1 to T+5 is not available for feature generation. For this experiment, **features are incrementally added** and the resulting effectiveness is evaluated. In general, the group of features considered are:
 
 1) **A.** This group consists of only 1) geohash6, 2) day of week, 3) period.
 2) **B.** This group consists of all features in **A**, and in addition, the geohash-based (not regional) long-term historical features.
