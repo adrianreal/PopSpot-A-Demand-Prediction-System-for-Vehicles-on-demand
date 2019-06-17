@@ -74,7 +74,7 @@ To test the accuracy of the trained model, use the following command.
 ```
 python testing.py --test_data=data/engineered_test.csv --model=lgbm
 ```
-Similar to training, "ridge" and "mlp" may be used too instead of "lgbm". However, LightGBM is the best-performing method. If you run the code, you can see an output with such a format:
+Similar to the training step earlier, "ridge" and "mlp" may too be used instead of "lgbm". However, LightGBM is the best-performing method. If you run the code, you can see an output with such a format:
 
 ```
 Testing Begins
@@ -113,7 +113,7 @@ Here is a plot of the daily aggregated demand of 12 randomly chosen geohash6 poi
 <p align="center">
 <img src="hash_map.png"  width="600" height="400">
 </p>
-As observed, the daily aggregated demand patterns are very dependent on the geohash point at which they are recorded. For example, in the case of qp09e5, the demand is relatively high throughout the week. In contrast, for the rest of the points, the demand varies according to the day of the week. This demonstrates the variability of the aggregated demand over geohash points.
+As observed, the daily aggregated demand patterns are very dependent on the geohash point at which they are recorded. For example, in the case of qp09e5, the demand is relatively high throughout the week. In contrast, for the rest of the points, the demand varies according to the day of the week. This demonstrates the variability of the aggregated demand over different geohash points.
 
 \
 A city/town/geograhical space is often categorized into many regions, and each region usually has a particular function. E.g. in Singapore, the central Downtown Core region holds the central business district, while the western Jurong region holds mostly residential buildings. As such, the demand characteristics of points within each region tends to be similar, while the demand characteristics of different regions may be different. E.g. the demand during the morning peak hours at the residential regions may be higher than that of the industrial complexes, since there are more people traveling out of their houses for work then. Due to this reason, the demand of a point is likely not too far from its neighbouring points. To account for such dependencies, we break the map down into regions. Since the city from which the data is obtained is unknown, the map is broken down to 5 x 5 grids, and each point is assigned to its respective grid. A feature as such is then generated for each record:
@@ -230,7 +230,7 @@ Experiments are also conducted to compare the accuracy of LightGBM against two o
 As observed, LightGBM has the best performance, which demonstrates the effectiveness of using gradient-boosting decision tree methods for problems like this. The RMSE of 0.0312 and MAE of 0.0203 highlight the fairly high accuracy of LightGBM, considering that the majority of the demands fall below 0.249 as shown earlier. Specifically, the RMSE and MAE are 12.5% and 8.2% of this particular demand. Note that the errors for Linear Regression are extremely large. This is due to overfitting in linear regression, exacerbated by the large number of dummy variables that come from one-hot encoding. As such, since ridge regression has a regularizer term that penalizes large coefficients and minimizes overfitting, it performs much better than linear regression. MLP, on the other hand performs worse than LightGBM.
 
 ## Limitations and Areas of Improvements
-Due to anonymity of the geo-locations of the data, city-specific optimizations are omitted. If city-specific information is available, more accurate features can also be derived. For example, places like Singapore often have government-planned regions, e.g. Downtown Core, Changi, etc. Each of these regions serves a particular function, e.g. business district or residential, and it may benefit the estimations if such finer-grained information is used.
+Due to the anonymity of the geo-locations of the data, city-specific optimizations are omitted. If city-specific information is available, more accurate features can also be derived. For example, places like Singapore often have government-planned regions, e.g. Downtown Core, Changi, etc. Each of these regions serves a particular function, e.g. business district or residential, and it may benefit the estimations if such finer-grained information is used.
 
 The state of the art method focuses on estimating the regional demand [2], where the area of the regions considered is much larger than the area covered by a geohash (in our case). Although it is deep-learning based, it requires the information of the road network. As such, if more information like the city-specific road network is available, further optimization via other methods can also be applied. Furthermore, apart from [2] which requires city-specific road network information, the other notable deep learning-based methods focus only on region-based demand prediction, and only demonstrate its superiority over gradient boost methods when short-term demand is considered [3]. Specifically, they do not use the long-term historical demands that have been shown to be effective in our case. As such, LightGBM is still safely more reliable and is the chosen model for this problem for accuracy-sake. 
 
