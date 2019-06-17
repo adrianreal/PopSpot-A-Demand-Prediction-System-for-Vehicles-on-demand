@@ -117,11 +117,11 @@ As observed, the daily aggregated demand patterns are very dependent on the geoh
 
 \
 A city/town/geograhical space is often categorized into many regions, and each region usually has a particular function. E.g. in Singapore, the central Downtown Core region holds the central business district, while the western Jurong region holds mostly residential buildings. As such, the demand characteristics of points within each region tends to be similar, while the demand characteristics of different regions may be different. E.g. the demand during the morning peak hours at the residential regions may be higher than that of the industrial complexes, since there are more people traveling out of their houses for work then. Due to this reason, the demand of a point is likely not too far from its neighbouring points. To account for such dependencies, we break the map down into regions. Since the city from which the data is obtained is unknown, the map is broken down to 5 x 5 grids, and each point is assigned to its respective grid. A feature as such is then generated for each record:
-- Region (Big)
+- Region-Big (0-24)
 
 Since a 5 x 5 grid-mapping may not be exactly how the city is regionized in real life, we further create two other versions of the map with 8 x 8 and 12 x 12 grids respectively for a finer-grained represention of the city. As such, two other features are genereated:
-- Region (Medium)
-- Region (Small)
+- Region-Medium (0-63)
+- Region-Small (0-143)
 
 ### 2) Long-term Historical Features
 The demand at a certain period on a certain day may depend on the day of week. For example, there may be more people demanding Grab vehicles for trips towards the downtown business district during 8 am of a weekday than 8 am of a weekend. 
@@ -132,9 +132,9 @@ To account for such periodicity, the following features are created. These featu
 - Average demand at this geohash at the same period of the same weekday over the past 2 weeks
 
 Furthermore, to leverage such long-term information of the region that a point falls in, three other sets of features are generated. 
-- Long-term features for corresponding Region (Big)
-- Long-term features for correposnding Region (Medium)
-- Long-term features for correponding Region (Small)
+- Long-term features for corresponding Region-Big
+- Long-term features for correposnding Region-Medium
+- Long-term features for correponding Region-Small
 
 ### 3) Short-term Historical Features
 Although long-term demands highlight the periodicity of demand at a point, the actual demand is highly dependent on the real-time, i.e. short-term, conditions. For example, a point may experience higher demand for Grab vehicles over certain consecutive time periods because an ad-hoc event, e.g. Coldplay concert, just ended a while ago. As such, the short-term demand information over the past few periods is leveraged to capture such information, through the use of the following features.
@@ -146,16 +146,16 @@ Although long-term demands highlight the periodicity of demand at a point, the a
 - Sum of demand at this geohash over past 4 periods
 - Sum of demand at this geohash over past 6 periods
 
-For the same reasons mentioned in 2), the same feautres are generated for each of Region (Big), Region (Medium) and Region (Small). For example, the features for Region (Big) are as follows.
-- Demand at corresponding Region (Big) over period -1 (i.e. previous period)
-- Demand at corresponding Region (Big) over period -2
+For the same reasons mentioned in 2), the same feautres are generated for each of Region-Big, Region-Medium and Region-Small. For example, the features for Region-Big are as follows.
+- Demand at corresponding Region-Big over period -1 (i.e. previous period)
+- Demand at corresponding Region-Big over period -2
 - .....................................
-- Demand at corresponding Region (Big) over period -6
-- Sum of demand at corresponding Region (Big) over past 2 periods
-- Sum of demand at corresponding Region (Big) over past 4 periods
-- Sum of demand at corresponding Region (Big) over past 6 periods
+- Demand at corresponding Region-Big over period -6
+- Sum of demand at corresponding Region-Big over past 2 periods
+- Sum of demand at corresponding Region-Big over past 4 periods
+- Sum of demand at corresponding Region-Big over past 6 periods
 
-The is repeated for Region (Small) and Region (Medium) to get their respective short-term features. **Note**: If dataset is testing dataset, certain short-term historical demands may not be available for all points/regions. E.g. If the current record 
+The is repeated for Region-Small and Region-Medium to get their respective short-term features. **Note**: If dataset is testing dataset, certain short-term historical demands may not be available for all points/regions. E.g. If the current record 
 is recorded at T+5, the only short-term historical demands (over past six periods) available are during T-1 and T (we are only allowed to generate features using data up to T). In these cases, extrapolation is done by filling these missing demands with its temporally closest available recorded demand. In the above example, T1-T4 are filled with the demand at T. 
 
 ## Problem Definition
